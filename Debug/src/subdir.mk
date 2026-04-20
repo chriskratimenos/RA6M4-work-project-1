@@ -6,6 +6,7 @@
 C_SRCS += \
 ../src/hal_entry.c \
 ../src/hal_warmstart.c \
+../src/i2c_sensor.c \
 ../src/s1_button.c \
 ../src/s2_button.c \
 ../src/vee_flash.c 
@@ -13,6 +14,7 @@ C_SRCS += \
 C_DEPS += \
 ./src/hal_entry.d \
 ./src/hal_warmstart.d \
+./src/i2c_sensor.d \
 ./src/s1_button.d \
 ./src/s2_button.d \
 ./src/vee_flash.d 
@@ -20,6 +22,7 @@ C_DEPS += \
 OBJS += \
 ./src/hal_entry.o \
 ./src/hal_warmstart.o \
+./src/i2c_sensor.o \
 ./src/s1_button.o \
 ./src/s2_button.o \
 ./src/vee_flash.o 

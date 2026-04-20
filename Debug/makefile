@@ -16,6 +16,7 @@ RM := rm -rf
 -include ra/fsp/src/rm_vee_flash/subdir.mk
 -include ra/fsp/src/r_lpm/subdir.mk
 -include ra/fsp/src/r_ioport/subdir.mk
+-include ra/fsp/src/r_iic_master/subdir.mk
 -include ra/fsp/src/r_icu/subdir.mk
 -include ra/fsp/src/r_flash_hp/subdir.mk
 -include ra/fsp/src/r_agt/subdir.mk

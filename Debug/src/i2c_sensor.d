@@ -1,4 +1,4 @@
-src/s1_button.o: ../src/s1_button.c ../src/common_utils.h \
+src/i2c_sensor.o: ../src/i2c_sensor.c ../src/common_utils.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_gen/hal_data.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/bsp_api.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/fsp_common_api.h \
@@ -76,7 +76,7 @@ src/s1_button.o: ../src/s1_button.c ../src/common_utils.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/rm_vee_api.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/rm_vee_flash_cfg.h \
  ../src/SEGGER_RTT/SEGGER_RTT.h ../src/SEGGER_RTT/SEGGER_RTT_Conf.h \
- ../src/vee_flash.h ../src/defenitions.h ../src/s1_button.h
+ ../src/defenitions.h ../src/i2c_sensor.h
 ../src/common_utils.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_gen/hal_data.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/bsp_api.h:
@@ -156,6 +156,5 @@ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/rm_vee_flash_cfg.h:
 ../src/SEGGER_RTT/SEGGER_RTT.h:
 ../src/SEGGER_RTT/SEGGER_RTT_Conf.h:
-../src/vee_flash.h:
 ../src/defenitions.h:
-../src/s1_button.h:
+../src/i2c_sensor.h:

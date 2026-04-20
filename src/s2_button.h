@@ -10,5 +10,5 @@
 fsp_err_t icu_s2_open(void);
 fsp_err_t icu_s2_enable(void);
 
-
+extern volatile bool low_power_mode;
 #endif /* S2_BUTTON_H_ */

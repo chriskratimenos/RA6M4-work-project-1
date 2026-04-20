@@ -218,8 +218,8 @@ FSP Configuration
       P505 118 SCI6_SCL6 GROVE2_SCL Low None "Peripheral mode" "n-ch open drain" None "ADC1: AN121; AGT3: AGTOB3; ICU0: IRQ14; QSPI0: QIO3; SCI6: RXD6; SCI6: SCL6" - IO - - 
       P506 119 SCI6_SDA6 GROVE2_SDA Low None "Peripheral mode" "n-ch open drain" None "ADC1: AN122; ICU0: IRQ15; SCI6: SDA6; SCI6: TXD6" - IO - - 
       P507 120 - - - - Disabled - - "SCI5: SCK5; SCI6: SCK6" - None - - 
-      P511 144 IIC1_SDA1 ARDUINO_SDA_MIKROBUS_SDA_GROVE1_SDA_QWIIC_SDA Medium None "Peripheral mode" CMOS None "CAN1: CRX1; GPT0: GTIOC0B; ICU0: IRQ15; IIC1: SDA1; SCI4: RXD4; SCI4: SCL4" - IO - - 
-      P512 143 IIC1_SCL1 ARDUINO_SCL_MIKROBUS_SCL_GROVE1_SCL_QWIIC_SCL Medium None "Peripheral mode" CMOS None "CAN1: CTX1; GPT0: GTIOC0A; ICU0: IRQ14; IIC1: SCL1; SCI4: SDA4; SCI4: TXD4" - IO - - 
+      P511 144 IIC1_SDA1 ARDUINO_SDA_MIKROBUS_SDA_GROVE1_SDA_QWIIC_SDA Medium None "Peripheral mode" "n-ch open drain" None "CAN1: CRX1; GPT0: GTIOC0B; ICU0: IRQ15; IIC1: SDA1; SCI4: RXD4; SCI4: SCL4" - IO - - 
+      P512 143 IIC1_SCL1 ARDUINO_SCL_MIKROBUS_SCL_GROVE1_SCL_QWIIC_SCL Medium None "Peripheral mode" "n-ch open drain" None "CAN1: CTX1; GPT0: GTIOC0A; ICU0: IRQ14; IIC1: SCL1; SCI4: SDA4; SCI4: TXD4" - IO - - 
       P600 98 OSPI0_OMSIO4 OSPI_SIO4 High - "Peripheral mode" CMOS None "AGT3: AGTIO3; BUS_ASYNCH0: RD; CAC0: CACREF; CGC0: CLKOUT; GPT6: GTIOC6B; OSPI0: OMSIO4; SCI9: SCK9" - IO - - 
       P601 97 OSPI0_OMSIO2 OSPI_SIO2 High - "Peripheral mode" CMOS None "AGT3: AGTEE3; BUS_ASYNCH0: WR; GPT6: GTIOC6A; OSPI0: OMSIO2; SCI9: RXD9; SCI9: SCL9" - IO - - 
       P602 96 OSPI0_OMCS1 - High - "Peripheral mode" CMOS None "AGT3: AGTO3; BUS_ASYNCH0: EBCLK; GPT7: GTIOC7B; OSPI0: OMCS1; SCI9: SDA9; SCI9: TXD9" - IO - - 
@@ -459,6 +459,11 @@ FSP Configuration
     Parameter Checking: Default (BSP)
     Standby Limit: Disabled
     
+  Module "I2C Master (r_iic_master)"
+    Parameter Checking: Default (BSP)
+    DTC on Transmission and Reception: Disabled
+    10-bit slave addressing: Disabled
+    
   HAL
     Instance "g_ioport I/O Port (r_ioport)"
       Name: g_ioport
@@ -547,4 +552,19 @@ FSP Configuration
       Digital Filtering Sample Clock (Only valid when Digital Filtering is Enabled): PCLK / 64
       Callback: irq_s2_cb
       Pin Interrupt Priority: Priority 11
+      
+    Instance "g_i2c_master I2C Master (r_iic_master)"
+      Name: g_i2c_master
+      Channel: 1
+      Rate: Standard
+      Custom Rate (bps): 0
+      Rise Time (ns): 120
+      Fall Time (ns): 120
+      Duty Cycle (%): 50
+      Slave Address: 0x18
+      Address Mode: 7-Bit
+      Timeout Mode: Short Mode
+      Timeout during SCL Low: Disabled
+      Callback: i2c_master_callback
+      Interrupt Priority Level: Priority 12
       

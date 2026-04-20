@@ -2,4 +2,5 @@
 #define DEFENITIONS
 #define NUM_TEMPERATURE_RECORDINGS 16
 #define TEMPERATURE_ID 0xAA
+
 #endif

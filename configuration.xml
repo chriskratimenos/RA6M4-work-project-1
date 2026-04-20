@@ -241,6 +241,10 @@
       <description>Low Power Modes</description>
       <originalPack>Renesas.RA.6.4.0.pack</originalPack>
     </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_iic_master" variant="" vendor="Renesas" version="6.4.0">
+      <description>I2C Master Interface</description>
+      <originalPack>Renesas.RA.6.4.0.pack</originalPack>
+    </component>
   </raComponentSelection>
   <raElcConfiguration/>
   <raIcuConfiguration/>
@@ -334,6 +338,21 @@
       <property id="module.driver.external_irq.p_callback" value="irq_s2_cb"/>
       <property id="module.driver.external_irq.ipl" value="board.icu.common.irq.priority11"/>
     </module>
+    <module id="module.driver.i2c_on_iic_master.1149692780">
+      <property id="module.driver.i2c_master.name" value="g_i2c_master"/>
+      <property id="module.driver.i2c_master.channel" value="1"/>
+      <property id="module.driver.i2c_master.rate" value="module.driver.i2c_master.rate.rate_standard"/>
+      <property id="module.driver.i2c_master.rate_value" value="0"/>
+      <property id="module.driver.i2c_master.rise_time_ns" value="120"/>
+      <property id="module.driver.i2c_master.fall_time_ns" value="120"/>
+      <property id="module.driver.i2c_master.duty" value="50"/>
+      <property id="module.driver.i2c_master.slave" value="0x18"/>
+      <property id="module.driver.i2c_master.addr_mode" value="module.driver.i2c_master.addr_mode.addr_mode_7bit"/>
+      <property id="module.driver.i2c_master.timeout_mode" value="module.driver.i2c_master.timeout_mode.short_mode"/>
+      <property id="module.driver.i2c_master.timeout_scl_low" value="module.driver.i2c_master.timeout_scl_low.disabled"/>
+      <property id="module.driver.i2c_master.p_callback" value="i2c_master_callback"/>
+      <property id="module.driver.i2c_master.ipl" value="board.icu.common.irq.priority12"/>
+    </module>
     <context id="_hal.0">
       <stack module="module.driver.ioport_on_ioport.0"/>
       <stack module="module.middleware.rm_vee_flash.616833938">
@@ -343,11 +362,17 @@
       <stack module="module.driver.timer_on_agt.596777309"/>
       <stack module="module.driver.lpm.2044927627"/>
       <stack module="module.driver.external_irq_on_icu.75658605"/>
+      <stack module="module.driver.i2c_on_iic_master.1149692780"/>
     </context>
     <config id="config.driver.flash_hp">
       <property id="config.driver.flash_hp.param_checking_enable" value="config.flash_hp.param_checking_enable.bsp"/>
       <property id="config.driver.flash_hp.param_code_flash_programming_enable" value="config.driver.flash_hp.param_code_flash_programming_enable.disabled"/>
       <property id="config.driver.flash_hp.param_data_flash_programming_enable" value="config.driver.flash_hp.param_data_flash_programming_enable.enabled"/>
+    </config>
+    <config id="config.driver.iic_master">
+      <property id="config.driver.iic_master.param_checking_enable" value="config.driver.iic_master.param_checking_enable.bsp"/>
+      <property id="config.driver.iic_master.dtc_enable" value="config.driver.iic_master.dtc_enable.disabled"/>
+      <property id="config.driver.iic_master.addr_mode_10_bit_enable" value="config.driver.iic_master.addr_mode_10_bit_enable.disabled"/>
     </config>
     <config id="config.middleware.rm_vee_flash">
       <property id="config.middleware.rm_vee_flash.checking" value="config.middleware.rm_vee_flash.checking.system"/>
@@ -667,9 +692,11 @@
       <configSetting altId="p511.iic1.sda" configurationId="p511"/>
       <configSetting altId="p511.gpio_speed.gpio_speed_medium" configurationId="p511.gpio_drivecapacity"/>
       <configSetting altId="p511.gpio_mode.gpio_mode_peripheral" configurationId="p511.gpio_mode"/>
+      <configSetting altId="p511.gpio_otype.gpio_otype_n_ch_od" configurationId="p511.gpio_otype"/>
       <configSetting altId="p512.iic1.scl" configurationId="p512"/>
       <configSetting altId="p512.gpio_speed.gpio_speed_medium" configurationId="p512.gpio_drivecapacity"/>
       <configSetting altId="p512.gpio_mode.gpio_mode_peripheral" configurationId="p512.gpio_mode"/>
+      <configSetting altId="p512.gpio_otype.gpio_otype_n_ch_od" configurationId="p512.gpio_otype"/>
       <configSetting altId="p600.ospi0.omsio4" configurationId="p600"/>
       <configSetting altId="p600.gpio_speed.gpio_speed_high" configurationId="p600.gpio_drivecapacity"/>
       <configSetting altId="p600.gpio_mode.gpio_mode_peripheral" configurationId="p600.gpio_mode"/>

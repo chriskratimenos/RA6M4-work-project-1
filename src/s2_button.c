@@ -2,9 +2,11 @@
 #include "defenitions.h"
 #include "s2_button.h"
 /* Boolean flag to determine switch is pressed or not.*/
+volatile bool low_power_mode = false;
 
 fsp_err_t icu_s2_open(void)
 {
+    low_power_mode= false;
     fsp_err_t err = FSP_SUCCESS;
     /* Open ICU module */
     err = R_ICU_ExternalIrqOpen (&s2_button_irq_ctrl, &s2_button_irq_cfg);
@@ -35,4 +37,11 @@ fsp_err_t icu_s2_enable(void)
     return err;
 }
 
+
+void irq_s2_cb(external_irq_callback_args_t *p_args)
+{
+    FSP_PARAMETER_NOT_USED(p_args);
+    low_power_mode = true;
+    return;
+}
 

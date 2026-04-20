@@ -58,6 +58,10 @@ ra_gen/main.o: ../ra_gen/main.c ../ra_gen/hal_data.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_ioport_api.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_ioport_cfg.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/bsp/bsp_pin_cfg.h \
+ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_iic_master.h \
+ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_iic_master_cfg.h \
+ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_i2c_master_api.h \
+ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_transfer_api.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_lpm.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_lpm_cfg.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_lpm_api.h \
@@ -130,6 +134,10 @@ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_ioport_api.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_ioport_cfg.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/bsp/bsp_pin_cfg.h:
+C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_iic_master.h:
+C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_iic_master_cfg.h:
+C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_i2c_master_api.h:
+C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_transfer_api.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_lpm.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_lpm_cfg.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_lpm_api.h:

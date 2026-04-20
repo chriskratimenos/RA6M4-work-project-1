@@ -60,6 +60,7 @@ ra/fsp/src/bsp/mcu/ra6m4 \
 ra/fsp/src/r_agt \
 ra/fsp/src/r_flash_hp \
 ra/fsp/src/r_icu \
+ra/fsp/src/r_iic_master \
 ra/fsp/src/r_ioport \
 ra/fsp/src/r_lpm \
 ra/fsp/src/rm_vee_flash \

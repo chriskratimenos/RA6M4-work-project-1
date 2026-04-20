@@ -81,8 +81,8 @@
       <configSetting altId="etherc0.rmii.txd1.p406" configurationId="etherc0.rmii.txd1" peripheral="ETHERC_RMII0"/>
       <configSetting altId="etherc0.rmii.txd_en.p405" configurationId="etherc0.rmii.txd_en" peripheral="ETHERC_RMII0"/>
       <configSetting altId="gpt6.gtiocb.p408" configurationId="gpt6.gtiocb" peripheral="GPT6"/>
-      <configSetting altId="iic1.scl.p512" configurationId="iic1.scl" peripheral="IIC1"/>
-      <configSetting altId="iic1.sda.p511" configurationId="iic1.sda" peripheral="IIC1"/>
+      <configSetting altId="iic1.scl.p512" configurationId="iic1.scl" isUsedByDriver="true" peripheral="IIC1"/>
+      <configSetting altId="iic1.sda.p511" configurationId="iic1.sda" isUsedByDriver="true" peripheral="IIC1"/>
       <configSetting altId="irq0.irq06.p409" configurationId="irq0.irq06" peripheral="ICU0"/>
       <configSetting altId="irq0.irq08.p002" configurationId="irq0.irq08" peripheral="ICU0"/>
       <configSetting altId="irq0.irq09.p414" configurationId="irq0.irq09" peripheral="ICU0"/>
@@ -211,8 +211,10 @@
       <configSetting altId="p506.gpio_otype.gpio_otype_n_ch_od" configurationId="p506.gpio_otype"/>
       <configSetting altId="p511.gpio_speed.gpio_speed_medium" configurationId="p511.gpio_drivecapacity"/>
       <configSetting altId="p511.gpio_mode.gpio_mode_peripheral" configurationId="p511.gpio_mode"/>
+      <configSetting altId="p511.gpio_otype.gpio_otype_n_ch_od" configurationId="p511.gpio_otype"/>
       <configSetting altId="p512.gpio_speed.gpio_speed_medium" configurationId="p512.gpio_drivecapacity"/>
       <configSetting altId="p512.gpio_mode.gpio_mode_peripheral" configurationId="p512.gpio_mode"/>
+      <configSetting altId="p512.gpio_otype.gpio_otype_n_ch_od" configurationId="p512.gpio_otype"/>
       <configSetting altId="p600.gpio_speed.gpio_speed_high" configurationId="p600.gpio_drivecapacity"/>
       <configSetting altId="p600.gpio_mode.gpio_mode_peripheral" configurationId="p600.gpio_mode"/>
       <configSetting altId="p601.gpio_speed.gpio_speed_high" configurationId="p601.gpio_drivecapacity"/>
