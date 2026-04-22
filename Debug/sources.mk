@@ -57,12 +57,15 @@ ra/board/ra6m4_ek \
 ra/fsp/src/bsp/cmsis/Device/RENESAS/Source \
 ra/fsp/src/bsp/mcu/all \
 ra/fsp/src/bsp/mcu/ra6m4 \
+ra/fsp/src/r_adc \
 ra/fsp/src/r_agt \
 ra/fsp/src/r_flash_hp \
+ra/fsp/src/r_gpt \
 ra/fsp/src/r_icu \
 ra/fsp/src/r_iic_master \
 ra/fsp/src/r_ioport \
 ra/fsp/src/r_lpm \
+ra/fsp/src/r_sci_uart \
 ra/fsp/src/rm_vee_flash \
 ra_gen \
 src/SEGGER_RTT \

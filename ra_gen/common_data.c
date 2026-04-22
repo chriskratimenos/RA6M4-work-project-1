@@ -7,7 +7,7 @@ const icu_extended_cfg_t s2_button_irq_ext_cfg =
 { .filter_src = EXTERNAL_IRQ_DIGITAL_FILTER_PCLK_DIV, };
 
 const external_irq_cfg_t s2_button_irq_cfg =
-{ .channel = 11, .trigger = EXTERNAL_IRQ_TRIG_RISING, .filter_enable = false, .clock_source_div =
+{ .channel = 11, .trigger = EXTERNAL_IRQ_TRIG_FALLING, .filter_enable = true, .clock_source_div =
           EXTERNAL_IRQ_CLOCK_SOURCE_DIV_64,
   .p_callback = irq_s2_cb,
   /** If NULL then do not add & */
@@ -17,7 +17,7 @@ const external_irq_cfg_t s2_button_irq_cfg =
   .p_context = (void*) &NULL,
 #endif
   .p_extend = (void*) &s2_button_irq_ext_cfg,
-  .ipl = (11),
+  .ipl = (2),
 #if defined(VECTOR_NUMBER_ICU_IRQ11)
     .irq                 = VECTOR_NUMBER_ICU_IRQ11,
 #else
@@ -34,7 +34,7 @@ const icu_extended_cfg_t s1_button_irq_ext_cfg =
 { .filter_src = EXTERNAL_IRQ_DIGITAL_FILTER_PCLK_DIV, };
 
 const external_irq_cfg_t s1_button_irq_cfg =
-{ .channel = 10, .trigger = EXTERNAL_IRQ_TRIG_RISING, .filter_enable = false, .clock_source_div =
+{ .channel = 10, .trigger = EXTERNAL_IRQ_TRIG_RISING, .filter_enable = true, .clock_source_div =
           EXTERNAL_IRQ_CLOCK_SOURCE_DIV_64,
   .p_callback = irq_s1_cb,
   /** If NULL then do not add & */

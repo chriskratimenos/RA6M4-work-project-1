@@ -5,7 +5,7 @@
 #include "common_utils.h"
 static bool callback_called = false;
 static rm_vee_state_t vee_done_state;
-uint8_t read_buffer[16];    //global read buffer that contains temperature array
+//global read buffer that contains temperature array
 
 /* Callback function */
 void vee_callback(rm_vee_callback_args_t *p_args)
@@ -15,7 +15,7 @@ void vee_callback(rm_vee_callback_args_t *p_args)
 }
 
 /*Initialize the VEE_FLASH module*/
-fsp_err_t vee_flash_init(void)
+void vee_flash_init(void)
 {
     fsp_err_t err = FSP_SUCCESS;
     /* Open the RM_VEE_FLASH driver module.*/
@@ -24,10 +24,10 @@ fsp_err_t vee_flash_init(void)
     {
         APP_ERR_PRINT("\r\n** RM_VEE_FLASH_Open API FAILED **\r\n");
     }
-    return err;
+    return ;
 }
 
-fsp_err_t vee_format_operation(void)
+void  vee_format_operation(void)
 {
     fsp_err_t err = FSP_SUCCESS;
     uint8_t ref_data = RESET_VALUE;
@@ -36,7 +36,7 @@ fsp_err_t vee_format_operation(void)
     if (FSP_SUCCESS != err)
     {
         APP_ERR_PRINT("\r\n** RM_VEE_FLASH_Format API FAILED **\r\n");
-        return err;
+        return ;
     }
     /* Get the current status of the driver.*/
     rm_vee_status_t p_status;
@@ -44,13 +44,13 @@ fsp_err_t vee_format_operation(void)
     if (FSP_SUCCESS != err)
     {
         APP_ERR_PRINT("\r\n** RM_VEE_FLASH_StatusGet API FAILED **\r\n");
-        return err;
+        return ;
     }
     /* Compare Last ID written with Default ID.*/
-    return err;
+    return ;
 }
 
-fsp_err_t vee_write_operation(uint32_t const rec_id, void *p_rec_data, uint32_t num_bytes)
+void vee_write_operation(uint32_t const rec_id, void *p_rec_data, uint32_t num_bytes)
 {
     fsp_err_t err = FSP_SUCCESS;
     /* Write the data to a Virtual EEPROM Record. */
@@ -58,7 +58,7 @@ fsp_err_t vee_write_operation(uint32_t const rec_id, void *p_rec_data, uint32_t 
     if (FSP_SUCCESS != err)
     {
         APP_ERR_PRINT("\r\n** RM_VEE_FLASH_Open FAILED **\r\n");
-        return err;
+        return ;
     }
     /*Wait for Virtual EEPROM callback to indicate that it has finished writing data and vee flash is in a ready state*/
     while (callback_called != true)
@@ -68,17 +68,27 @@ fsp_err_t vee_write_operation(uint32_t const rec_id, void *p_rec_data, uint32_t 
     }
     /* Reset the flag.*/
     callback_called = false;
-    return err;
+    return ;
 }
 
-fsp_err_t vee_read_operation(uint32_t const rec_id)
+void vee_read_operation(uint32_t const rec_id, void *p_read_buffer, uint32_t num_bytes)
 {
     fsp_err_t err = FSP_SUCCESS;
-    uint32_t num_bytes;
-    uint8_t * p_record_data;
+    uint8_t *p_record_data;
+    uint32_t record_size;
+
     /* Get a pointer to the record that is stored in data flash. */
-    err = RM_VEE_FLASH_RecordPtrGet (&g_vee_ctrl, rec_id, (uint8_t**) &p_record_data, &num_bytes);
-    memcpy(read_buffer, p_record_data, num_bytes);
-    return err;
+    err = RM_VEE_FLASH_RecordPtrGet (&g_vee_ctrl, rec_id, (uint8_t**) &p_record_data, &record_size);
+    if (FSP_SUCCESS != err)
+    {
+        APP_ERR_PRINT("\r\n** RM_VEE_FLASH_RecordPtrGet API FAILED **\r\n");
+        return err;
+    }
+    if (record_size > num_bytes)
+    {
+        return FSP_ERR_INVALID_SIZE;
+    }
+    memcpy (p_read_buffer, p_record_data, record_size);
+    return ;
 }
 

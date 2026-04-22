@@ -14,12 +14,15 @@ RM := rm -rf
 -include src/subdir.mk
 -include ra_gen/subdir.mk
 -include ra/fsp/src/rm_vee_flash/subdir.mk
+-include ra/fsp/src/r_sci_uart/subdir.mk
 -include ra/fsp/src/r_lpm/subdir.mk
 -include ra/fsp/src/r_ioport/subdir.mk
 -include ra/fsp/src/r_iic_master/subdir.mk
 -include ra/fsp/src/r_icu/subdir.mk
+-include ra/fsp/src/r_gpt/subdir.mk
 -include ra/fsp/src/r_flash_hp/subdir.mk
 -include ra/fsp/src/r_agt/subdir.mk
+-include ra/fsp/src/r_adc/subdir.mk
 -include ra/fsp/src/bsp/mcu/ra6m4/subdir.mk
 -include ra/fsp/src/bsp/mcu/all/subdir.mk
 -include ra/fsp/src/bsp/cmsis/Device/RENESAS/Source/subdir.mk

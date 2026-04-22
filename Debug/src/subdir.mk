@@ -4,27 +4,39 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../src/adc.c \
+../src/agt_timer.c \
+../src/gpt_timer.c \
 ../src/hal_entry.c \
 ../src/hal_warmstart.c \
 ../src/i2c_sensor.c \
 ../src/s1_button.c \
 ../src/s2_button.c \
+../src/uart.c \
 ../src/vee_flash.c 
 
 C_DEPS += \
+./src/adc.d \
+./src/agt_timer.d \
+./src/gpt_timer.d \
 ./src/hal_entry.d \
 ./src/hal_warmstart.d \
 ./src/i2c_sensor.d \
 ./src/s1_button.d \
 ./src/s2_button.d \
+./src/uart.d \
 ./src/vee_flash.d 
 
 OBJS += \
+./src/adc.o \
+./src/agt_timer.o \
+./src/gpt_timer.o \
 ./src/hal_entry.o \
 ./src/hal_warmstart.o \
 ./src/i2c_sensor.o \
 ./src/s1_button.o \
 ./src/s2_button.o \
+./src/uart.o \
 ./src/vee_flash.o 
 
 SREC += \

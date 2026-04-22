@@ -58,16 +58,24 @@ ra_gen/hal_data.o: ../ra_gen/hal_data.c ../ra_gen/hal_data.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_ioport_api.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_ioport_cfg.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/bsp/bsp_pin_cfg.h \
+ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_adc.h \
+ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_adc_cfg.h \
+ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_adc_api.h \
+ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_elc_api.h \
+ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_transfer_api.h \
+ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_sci_uart.h \
+ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_uart_api.h \
+ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_sci_uart_cfg.h \
+ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_gpt.h \
+ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_timer_api.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_iic_master.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_iic_master_cfg.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_i2c_master_api.h \
- C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_transfer_api.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_lpm.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_lpm_cfg.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_lpm_api.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_agt.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_agt_cfg.h \
- C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_timer_api.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_flash_hp.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_flash_api.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_flash_hp_cfg.h \
@@ -134,16 +142,24 @@ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_ioport_api.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_ioport_cfg.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/bsp/bsp_pin_cfg.h:
+C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_adc.h:
+C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_adc_cfg.h:
+C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_adc_api.h:
+C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_elc_api.h:
+C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_transfer_api.h:
+C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_sci_uart.h:
+C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_uart_api.h:
+C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_sci_uart_cfg.h:
+C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_gpt.h:
+C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_timer_api.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_iic_master.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_iic_master_cfg.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_i2c_master_api.h:
-C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_transfer_api.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_lpm.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_lpm_cfg.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_lpm_api.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_agt.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_agt_cfg.h:
-C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_timer_api.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/r_flash_hp.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/r_flash_api.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/r_flash_hp_cfg.h:
