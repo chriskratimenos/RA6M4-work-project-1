@@ -21,7 +21,7 @@ This project implements a temperature monitoring system using the Renesas RA6M4 
 | Component | Description |
 |-----------|-------------|
 | MCU Board | [EK-RA6M4](https://www.renesas.com/products/microcontrollers-microprocessors/ra-cortex-m-mcus/ek-ra6m4-evaluation-kit-ra6m4-mcu-group)  |
-| Temperature Sensor | [THERMO 8 CLICK](https://www.mikroe.com/thermo-8-click) or Renesas US082-HS3001EVZ  |
+| Temperature Sensor | [THERMO 8 CLICK](https://www.mikroe.com/thermo-8-click)  |
 | USB to TTL Adapter | For UART serial output |
 
 ### Temperature Reading
