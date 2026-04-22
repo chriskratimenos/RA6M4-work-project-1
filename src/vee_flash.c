@@ -1,20 +1,20 @@
-#include "hal_data.h"
-#include "cmsis_gcc.h"
-#include <string.h>
-#include "vee_flash.h"
+/***********************************************************************************************************************
+ * File Name    : vee_flash.c
+ * Description  : Virtual EEPROM (VEE) Flash operations for persistent data storage
+ **********************************************************************************************************************/
 #include "common_utils.h"
+#include "vee_flash.h"
+
+/* Flag to indicate VEE callback has been invoked */
 static bool callback_called = false;
-static rm_vee_state_t vee_done_state;
-//global read buffer that contains temperature array
+/* Stores the VEE state returned from callback */
 
-/* Callback function */
-void vee_callback(rm_vee_callback_args_t *p_args)
-{
-    callback_called = true;
-    vee_done_state = p_args->state;
-}
-
-/*Initialize the VEE_FLASH module*/
+/*******************************************************************************************************************//**
+ * @brief  Initialize the VEE Flash module.
+ *
+ * Opens and initializes the RM_VEE_FLASH driver module for Virtual EEPROM operations.
+ * Must be called before any other VEE operations.
+ **********************************************************************************************************************/
 void vee_flash_init(void)
 {
     fsp_err_t err = FSP_SUCCESS;
@@ -23,11 +23,19 @@ void vee_flash_init(void)
     if (FSP_SUCCESS != err)
     {
         APP_ERR_PRINT("\r\n** RM_VEE_FLASH_Open API FAILED **\r\n");
+        APP_ERR_TRAP(err);
     }
-    return ;
+    return;
 }
 
-void  vee_format_operation(void)
+/*******************************************************************************************************************//**
+ * @brief  Perform a format operation on the VEE Flash.
+ *
+ * Starts a manual format operation to initialize or reset the Virtual EEPROM storage area.
+ *
+ * @note  This operation will erase all stored data. Use with caution.
+ **********************************************************************************************************************/
+void vee_format_operation(void)
 {
     fsp_err_t err = FSP_SUCCESS;
     uint8_t ref_data = RESET_VALUE;
@@ -36,7 +44,8 @@ void  vee_format_operation(void)
     if (FSP_SUCCESS != err)
     {
         APP_ERR_PRINT("\r\n** RM_VEE_FLASH_Format API FAILED **\r\n");
-        return ;
+        APP_ERR_TRAP(err);
+        return;
     }
     /* Get the current status of the driver.*/
     rm_vee_status_t p_status;
@@ -44,12 +53,22 @@ void  vee_format_operation(void)
     if (FSP_SUCCESS != err)
     {
         APP_ERR_PRINT("\r\n** RM_VEE_FLASH_StatusGet API FAILED **\r\n");
-        return ;
+        APP_ERR_TRAP(err);
+        return;
     }
-    /* Compare Last ID written with Default ID.*/
-    return ;
+    return;
 }
 
+/*******************************************************************************************************************//**
+ * @brief  Write data to a VEE Flash record.
+ *
+ * Writes the specified data to a Virtual EEPROM record identified by the record ID.
+ * This function blocks until the write operation completes via callback.
+ *
+ * @param[in]  rec_id       Record ID to write to
+ * @param[in]  p_rec_data   Pointer to the data buffer to write
+ * @param[in]  num_bytes    Number of bytes to write
+ **********************************************************************************************************************/
 void vee_write_operation(uint32_t const rec_id, void *p_rec_data, uint32_t num_bytes)
 {
     fsp_err_t err = FSP_SUCCESS;
@@ -57,20 +76,29 @@ void vee_write_operation(uint32_t const rec_id, void *p_rec_data, uint32_t num_b
     err = RM_VEE_FLASH_RecordWrite (&g_vee_ctrl, rec_id, p_rec_data, num_bytes);
     if (FSP_SUCCESS != err)
     {
-        APP_ERR_PRINT("\r\n** RM_VEE_FLASH_Open FAILED **\r\n");
-        return ;
+        APP_ERR_PRINT("\r\n** RM_VEE_FLASH_RecordWrite FAILED **\r\n");
+        APP_ERR_TRAP(err);
+        return;
     }
-    /*Wait for Virtual EEPROM callback to indicate that it has finished writing data and vee flash is in a ready state*/
+    /* Wait for Virtual EEPROM callback to indicate that it has finished writing data and VEE flash is in a ready state */
     while (callback_called != true)
     {
-        //TODO handle if it takes to long with a watchdog timer
         ;
     }
     /* Reset the flag.*/
     callback_called = false;
-    return ;
+    return;
 }
 
+/*******************************************************************************************************************//**
+ * @brief  Read data from a VEE Flash record.
+ *
+ * Retrieves data from a Virtual EEPROM record and copies it to the provided buffer.
+ *
+ * @param[in]   rec_id         Record ID to read from
+ * @param[out]  p_read_buffer  Pointer to buffer where read data will be stored
+ * @param[in]   num_bytes      Maximum number of bytes the buffer can hold
+ **********************************************************************************************************************/
 void vee_read_operation(uint32_t const rec_id, void *p_read_buffer, uint32_t num_bytes)
 {
     fsp_err_t err = FSP_SUCCESS;
@@ -82,13 +110,29 @@ void vee_read_operation(uint32_t const rec_id, void *p_read_buffer, uint32_t num
     if (FSP_SUCCESS != err)
     {
         APP_ERR_PRINT("\r\n** RM_VEE_FLASH_RecordPtrGet API FAILED **\r\n");
-        return err;
+        APP_ERR_TRAP(err);
+        return;
     }
     if (record_size > num_bytes)
     {
-        return FSP_ERR_INVALID_SIZE;
+        APP_ERR_PRINT("\r\n** Buffer too small **\r\n");
+        APP_ERR_TRAP(err);
+        return;
     }
     memcpy (p_read_buffer, p_record_data, record_size);
-    return ;
+    return;
 }
 
+/*******************************************************************************************************************//**
+ * @brief  Callback function for VEE Flash operations.
+ *
+ * Called by the VEE driver when an asynchronous operation completes.
+ * Sets a flag to indicate completion.
+ *
+ * @param[in]  p_args  Pointer to callback arguments containing the VEE state
+ **********************************************************************************************************************/
+void vee_callback(rm_vee_callback_args_t *p_args)
+{
+    FSP_PARAMETER_NOT_USED(p_args);
+    callback_called = true;
+}

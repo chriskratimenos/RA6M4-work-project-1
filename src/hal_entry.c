@@ -1,4 +1,7 @@
-#include "hal_data.h"
+/***********************************************************************************************************************
+ * File Name    : hal_entry.c
+ * Description  : Main application entry point for temperature monitoring system
+ **********************************************************************************************************************/
 #include "common_utils.h"
 #include "vee_flash.h"
 #include "s1_button.h"
@@ -22,6 +25,20 @@ int16_t temperature_read_buffer[NUM_TEMPERATURE_RECORDINGS];
 bsp_io_level_t level_LED1 = BSP_IO_LEVEL_LOW;
 bsp_io_level_t level_LED2 = BSP_IO_LEVEL_LOW;
 bsp_io_level_t level_LED3 = BSP_IO_LEVEL_LOW;
+
+/*******************************************************************************************************************//**
+ * @brief  Main application entry point.
+ *
+ * Initializes all peripherals and runs the main application loop.
+ * Handles temperature reading, button events, and low power mode.
+ *
+ * Features:
+ * - Periodic temperature reading from I2C sensor and ADC (averaged)
+ * - Storage of temperature data to Virtual EEPROM
+ * - S1 button: Toggle between reading mode and display mode
+ * - S2 button: Enter low power mode
+ * - UART output of temperature data
+ **********************************************************************************************************************/
 void hal_entry(void)
 {
     /*Initialize the peripherals*/
@@ -35,7 +52,7 @@ void hal_entry(void)
     while (1)
     {
         /*Handle Timer overflow every 1 sec*/
-        if (timer_overflow == true)
+        if (g_timer_overflow == true)
         {
             /*Toggle LED1 when reading*/
             level_LED1 = (level_LED1) ? BSP_IO_LEVEL_LOW : BSP_IO_LEVEL_HIGH;
@@ -43,7 +60,7 @@ void hal_entry(void)
             sensor_temp = read_sensor_data ();
             adc_temp = adc_scan_read ();
             /*Average the 2 values*/
-            temperature_write_buffer[idx] = (sensor_temp + adc_temp) >> 1;
+            temperature_write_buffer[idx] = (int16_t) ((sensor_temp + adc_temp) >> 1);
             /* Write to UART console*/
             uart_write (&temperature_write_buffer[idx], sizeof(temperature_write_buffer[0]));
             /* If the read buffer is full, write them to VEEPROM*/
@@ -55,24 +72,25 @@ void hal_entry(void)
                 memset (temperature_write_buffer, 0, NUM_TEMPERATURE_RECORDINGS * sizeof(temperature_write_buffer[0]));
                 idx = 0;
             }
-            timer_overflow = false;
+            g_timer_overflow = false;
 
         }
         /*2-state FSM for S1 button press states*/
-        else if (s1_button_pressed == true)
+        else if (g_s1_button_pressed == true)
         {
             switch (state)
             {
                 /* S1 is first pressed:
                  * 1) Stop the GTP timer to disable temperature reading
                  * 2) Read from VEEPROM temperatures
-                 * 3) Print temperatures to UART*/
+                 * 3) Print temperatures to UART
+                 * */
                 case (0):
                     stop_gpt_timer ();
                     /*Set the LEDs*/
                     R_IOPORT_PinWrite (&g_ioport_ctrl, LED1, BSP_IO_LEVEL_LOW);
                     R_IOPORT_PinWrite (&g_ioport_ctrl, LED2, BSP_IO_LEVEL_HIGH);
-                    s1_button_pressed = false;
+                    g_s1_button_pressed = false;
                     /*Read from VEE FLASH*/
                     vee_read_operation (TEMPERATURE_ID, temperature_read_buffer, 2 * NUM_TEMPERATURE_RECORDINGS);
                     /*Write to UART*/
@@ -85,7 +103,7 @@ void hal_entry(void)
                     memset (temperature_read_buffer, 0,
                     NUM_TEMPERATURE_RECORDINGS * sizeof(temperature_read_buffer[0]));
                     /*Return the FSM to starting state*/
-                    s1_button_pressed = false;
+                    g_s1_button_pressed = false;
                     state = 0;
                     R_IOPORT_PinWrite (&g_ioport_ctrl, LED2, BSP_IO_LEVEL_LOW);
                     /*Start the GTP timer to start temperature readings again*/
@@ -93,7 +111,7 @@ void hal_entry(void)
                 break;
             }
         }
-        else if (s2_button_pressed == true)
+        else if (g_s2_button_pressed == true)
         {
             fsp_err_t err = FSP_SUCCESS;
             R_IOPORT_PinWrite (&g_ioport_ctrl, LED1, BSP_IO_LEVEL_LOW);
@@ -105,20 +123,33 @@ void hal_entry(void)
             if (FSP_SUCCESS != err)
             {
                 /* ICU Enable failure message */
-                APP_ERR_PRINT("\r\n**R_ICU_ExternalIrqEnable API FAILED**\r\n");
+                APP_ERR_PRINT("\r\n**R_LPM_LowPowerModeEnter API FAILED**\r\n");
+                APP_ERR_TRAP(err);
             }
             R_IOPORT_PinWrite (&g_ioport_ctrl, LED1, BSP_IO_LEVEL_LOW);
             R_IOPORT_PinWrite (&g_ioport_ctrl, LED2, BSP_IO_LEVEL_LOW);
             R_IOPORT_PinWrite (&g_ioport_ctrl, LED3, BSP_IO_LEVEL_LOW);
             start_gpt_timer ();
-            s2_button_pressed = false;
+            g_s2_button_pressed = false;
         }
-
     }
 }
 
-
-void peripherals_init()
+/*******************************************************************************************************************//**
+ * @brief  Initialize all peripherals.
+ *
+ * Initializes and configures all required peripherals:
+ * - GPT and AGT timers
+ * - S1 and S2 button interrupts
+ * - VEE Flash for persistent storage
+ * - I2C temperature sensor (MCP9808)
+ * - ADC for internal temperature sensor
+ * - UART for serial communication
+ * - Low Power Mode
+ *
+ * Must be called once at startup before main loop.
+ **********************************************************************************************************************/
+void peripherals_init(void)
 {
     /* Initialize GPT timer*/
     init_gpt_timer ();
@@ -148,6 +179,12 @@ void peripherals_init()
     return;
 }
 
+/*******************************************************************************************************************//**
+ * @brief  Perform initial temperature readings and write to flash.
+ *
+ * Reads temperature data from sensor to fill the buffer and writes
+ * initial values to VEE Flash. Called once during initialization.
+ **********************************************************************************************************************/
 void initial_temperature_write_to_flash(void)
 {
     for (int i = 0; i < NUM_TEMPERATURE_RECORDINGS; i++)
@@ -155,6 +192,6 @@ void initial_temperature_write_to_flash(void)
         temperature_write_buffer[i] = read_sensor_data ();
     }
     vee_write_operation (TEMPERATURE_ID, temperature_write_buffer, 2 * NUM_TEMPERATURE_RECORDINGS);
-    memset (temperature_write_buffer, 0, sizeof(temperature_read_buffer));
+    memset (temperature_write_buffer, 0, sizeof(temperature_write_buffer));
 }
 

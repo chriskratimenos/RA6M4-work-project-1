@@ -1,4 +1,4 @@
-src/hal_entry.o: ../src/hal_entry.c \
+src/hal_entry.o: ../src/hal_entry.c ../src/common_utils.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_gen/hal_data.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/bsp_api.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/fsp_common_api.h \
@@ -83,12 +83,12 @@ src/hal_entry.o: ../src/hal_entry.c \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/rm_vee_flash.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/rm_vee_api.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/rm_vee_flash_cfg.h \
- ../src/common_utils.h ../src/SEGGER_RTT/SEGGER_RTT.h \
- ../src/SEGGER_RTT/SEGGER_RTT_Conf.h ../src/vee_flash.h \
- ../src/s1_button.h ../src/s2_button.h ../src/i2c_sensor.h \
- ../src/gpt_timer.h \
+ ../src/SEGGER_RTT/SEGGER_RTT.h ../src/SEGGER_RTT/SEGGER_RTT_Conf.h \
+ ../src/vee_flash.h ../src/s1_button.h ../src/s2_button.h \
+ ../src/i2c_sensor.h ../src/gpt_timer.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/arm/CMSIS_6/CMSIS/Core/Include/cmsis_gcc.h \
  ../src/uart.h ../src/adc.h ../src/agt_timer.h
+../src/common_utils.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_gen/hal_data.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/bsp_api.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/fsp_common_api.h:
@@ -173,7 +173,6 @@ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/rm_vee_flash.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/rm_vee_api.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/rm_vee_flash_cfg.h:
-../src/common_utils.h:
 ../src/SEGGER_RTT/SEGGER_RTT.h:
 ../src/SEGGER_RTT/SEGGER_RTT_Conf.h:
 ../src/vee_flash.h:

@@ -1,4 +1,4 @@
-src/vee_flash.o: ../src/vee_flash.c \
+src/vee_flash.o: ../src/vee_flash.c ../src/common_utils.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_gen/hal_data.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/bsp_api.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/fsp_common_api.h \
@@ -83,9 +83,9 @@ src/vee_flash.o: ../src/vee_flash.c \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/rm_vee_flash.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/rm_vee_api.h \
  C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/rm_vee_flash_cfg.h \
- C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/arm/CMSIS_6/CMSIS/Core/Include/cmsis_gcc.h \
- ../src/vee_flash.h ../src/common_utils.h ../src/SEGGER_RTT/SEGGER_RTT.h \
- ../src/SEGGER_RTT/SEGGER_RTT_Conf.h
+ ../src/SEGGER_RTT/SEGGER_RTT.h ../src/SEGGER_RTT/SEGGER_RTT_Conf.h \
+ ../src/vee_flash.h
+../src/common_utils.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_gen/hal_data.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/bsp_api.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/fsp_common_api.h:
@@ -170,8 +170,6 @@ C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/instances/rm_vee_flash.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/fsp/inc/api/rm_vee_api.h:
 C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra_cfg/fsp_cfg/rm_vee_flash_cfg.h:
-C:/Users/a5163766/OneDrive\ -\ Renesas\ Electronics\ Corporation/Documents/Code/project/ra/arm/CMSIS_6/CMSIS/Core/Include/cmsis_gcc.h:
-../src/vee_flash.h:
-../src/common_utils.h:
 ../src/SEGGER_RTT/SEGGER_RTT.h:
 ../src/SEGGER_RTT/SEGGER_RTT_Conf.h:
+../src/vee_flash.h:

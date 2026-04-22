@@ -1,9 +1,18 @@
+/***********************************************************************************************************************
+ * File Name    : s1_button.c
+ * Description  : S1 button interrupt handling using ICU external IRQ
+ **********************************************************************************************************************/
 #include "common_utils.h"
-#include "vee_flash.h"
 #include "s1_button.h"
-/* Boolean flag to determine switch is pressed or not.*/
+/* This flag is global, is used to determine if the switch is pressed or not.*/
+volatile bool g_s1_button_pressed = false;
 
-volatile bool s1_button_pressed = false;
+/*******************************************************************************************************************//**
+ * @brief  Open the ICU module for S1 button.
+ *
+ * Initializes the external IRQ for S1 button press detection.
+ * Must be called before enabling the interrupt.
+ **********************************************************************************************************************/
 void icu_s1_open(void)
 {
     fsp_err_t err = FSP_SUCCESS;
@@ -14,10 +23,17 @@ void icu_s1_open(void)
     {
         /* ICU Open failure message */
         APP_ERR_PRINT("\r\n**R_ICU_ExternalIrqOpen API FAILED**\r\n");
+        APP_ERR_TRAP(err);
     }
     return;
 }
 
+/*******************************************************************************************************************//**
+ * @brief  Enable the ICU interrupt for S1 button.
+ *
+ * Enables the external IRQ to start detecting S1 button presses.
+ * Must be called after icu_s1_open.
+ **********************************************************************************************************************/
 void icu_s1_enable(void)
 {
     fsp_err_t err = FSP_SUCCESS;
@@ -30,14 +46,23 @@ void icu_s1_enable(void)
     {
         /* ICU Enable failure message */
         APP_ERR_PRINT("\r\n**R_ICU_ExternalIrqEnable API FAILED**\r\n");
+        APP_ERR_TRAP(err);
     }
     return ;
 }
 
+/*******************************************************************************************************************//**
+ * @brief  Callback function for S1 button interrupt.
+ *
+ * Called by the ICU driver when S1 button is pressed.
+ * Sets a flag to indicate button press event.
+ *
+ * @param[in]  p_args  Pointer to callback arguments containing the IRQ event
+ **********************************************************************************************************************/
 void irq_s1_cb(external_irq_callback_args_t *p_args)
 {
     FSP_PARAMETER_NOT_USED(p_args);
-    s1_button_pressed = true;
+    g_s1_button_pressed = true;
     return ;
 }
 

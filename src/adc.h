@@ -1,10 +1,3 @@
-/*
- * adc.h
- *
- *  Created on: 21 Απρ 2026
- *      Author: a5163766
- */
-
 #ifndef ADC_H_
 #define ADC_H_
 

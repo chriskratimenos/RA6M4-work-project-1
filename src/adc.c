@@ -1,10 +1,7 @@
-/*
- * adc.c
- *
- *  Created on: 21 Απρ 2026
- *      Author: a5163766
- */
-#include "hal_data.h"
+/***********************************************************************************************************************
+ * File Name    : adc.c
+ * Description  : ADC operations for internal temperature sensor reading
+ **********************************************************************************************************************/
 #include "common_utils.h"
 #include "adc.h"
 #define ADC_VCC_MICROVOLT                        (3300000)
@@ -35,7 +32,13 @@ int32_t slope_uv_per_c = BSP_FEATURE_TSN_SLOPE;
  * Slope: Temperature slope given in Table 52.38 / 1000 (V/C)
  */
 
-void adc_init()
+/*******************************************************************************************************************//**
+ * @brief  Initialize the ADC module.
+ *
+ * Opens and configures the ADC driver for temperature sensor reading.
+ * Must be called before calibration and scan operations.
+ **********************************************************************************************************************/
+void adc_init(void)
 {
     fsp_err_t err = FSP_SUCCESS;
     /* Open and configure the ADC */
@@ -43,25 +46,28 @@ void adc_init()
     if (FSP_SUCCESS != err)
     {
         APP_ERR_PRINT("\r\n ** R_ADC_Open FAILED ** \r\n");
+        APP_ERR_TRAP(err);
     }
     /* Configure ADC channel */
     err = R_ADC_ScanCfg (&g_adc0_ctrl, &g_adc0_channel_cfg);
     if (FSP_SUCCESS != err)
     {
         APP_ERR_PRINT("\r\n ** R_ADC_ScanCfg FAILED ** \r\n");
+        APP_ERR_TRAP(err);
     }
     return;
 }
 
 
-int16_t adc_scan_read()
+int16_t adc_scan_read(void)
 {
     fsp_err_t err = FSP_SUCCESS;
     /* Start ADC scan */
     err = R_ADC_ScanStart (&g_adc0_ctrl);
     if (FSP_SUCCESS != err)
     {
-        APP_ERR_PRINT("\r\n ** R_ADC_ScanCfg FAILED ** \r\n");
+        APP_ERR_PRINT("\r\n ** R_ADC_ScanStart FAILED ** \r\n");
+        APP_ERR_TRAP(err);
     }
     while (callback_called != true)
     {
@@ -76,7 +82,16 @@ int16_t adc_scan_read()
     return adc_temperature;
 }
 
-void adc_calibrate()
+/*******************************************************************************************************************//**
+ * @brief  Calibrate the ADC module.
+ *
+ * Performs ADC calibration and retrieves calibration data from MCU.
+ * Calculates reference voltage (V1) for temperature calculation.
+ * Must be called after adc_init and before adc_scan_read.
+ *
+ * @note  Calibration takes 24ms to 780ms depending on clock configuration.
+ **********************************************************************************************************************/
+void adc_calibrate(void)
 {
     adc_status_t adc_status;         // to get adc status
     fsp_err_t err = FSP_SUCCESS;
@@ -84,11 +99,12 @@ void adc_calibrate()
     err = R_ADC_Calibrate (&g_adc0_ctrl, NULL);
     if (FSP_SUCCESS != err)
     {
-        APP_ERR_PRINT("\r\n ** R_ADC_ScanCfg FAILED ** \r\n");
+        APP_ERR_PRINT("\r\n ** R_ADC_Calibrate FAILED ** \r\n");
+        APP_ERR_TRAP(err);
     }
     do
     {
-        /* To get the adc status*/
+        /* To get the ADC status*/
         err = R_ADC_StatusGet (&g_adc0_ctrl, &adc_status);
 
         /* handle error */
@@ -96,6 +112,7 @@ void adc_calibrate()
         {
             /* ADC status Failure message */
             APP_ERR_PRINT("** R_ADC_StatusGet API failed ** \r\n");
+            APP_ERR_TRAP(err);
             return;
         }
     }
@@ -107,11 +124,18 @@ void adc_calibrate()
     reference_calibration_data = (int32_t) adc_info.calibration_data;
     v1_uv = (ADC_VCC_MICROVOLT >> ADC_TEMPERATURE_RESOLUTION) * reference_calibration_data;
     return;
-
 }
 
-/* Callback function */
+/*******************************************************************************************************************//**
+ * @brief  Callback function for ADC operations.
+ *
+ * Called by the ADC driver when scan operation completes.
+ * Sets a flag to indicate completion.
+ *
+ * @param[in]  p_args  Pointer to callback arguments containing the ADC event
+ **********************************************************************************************************************/
 void adc_cb(adc_callback_args_t *p_args)
 {
+    FSP_PARAMETER_NOT_USED(p_args);
     callback_called = true;
 }
